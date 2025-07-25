@@ -46,7 +46,13 @@ exports.loginForm = async (req, res) => {
       return res.status(401).send('Identifiants invalides');
     }
     const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '1h' });
-    res.cookie('token', token); // facultatif : tu peux aussi le stocker en session ou localStorage côté front
+    res.cookie('token', token,{
+      httpOnly: true,
+      secure: true,
+      sameSite: 'Strict',
+      maxAge: 3600000 // 1 heure
+
+    }); // facultatif : tu peux aussi le stocker en session ou localStorage côté front
     res.redirect('/dashboard');
   } catch (err) {
     res.status(500).send(err.message);

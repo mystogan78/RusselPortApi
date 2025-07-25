@@ -127,16 +127,17 @@
 const express = require('express');
 const router = express.Router();
 const catwayController = require('../controllers/catwayController');
+const authMiddleware = require('../middleware/authMiddleware');
 
 // 🔹 VUES EJS
-router.get('/', catwayController.getAllCatways); // Afficher tous les catways
-router.get('/details/:id', catwayController.getCatwayById); // Détail d’un catway (vue)
-router.get('/all',catwayController.getAll); // Afficher tous les catways (vue)
+router.get('/', authMiddleware, catwayController.getAllCatways); // Afficher tous les catways
+router.get('/details/:id', authMiddleware, catwayController.getCatwayById); // Détail d’un catway (vue)
+router.get('/all', authMiddleware, catwayController.getAll); // Afficher tous les catways (vue)
 
 // 🔹 API REST
-router.post('/', catwayController.createCatway); // Créer un catway
-router.post('/catway/update/:id', catwayController.updateCatway); // mettre à jour un catway
+router.post('/', authMiddleware, catwayController.createCatway); // Créer un catway
+router.post('/catway/update/:id', authMiddleware, catwayController.updateCatway); // mettre à jour un catway
 
-router.post('/catway/delete/:id', catwayController.deleteCatway); // Supprimer
+router.post('/catway/delete/:id', authMiddleware, catwayController.deleteCatway); // Supprimer
 
 module.exports = router;

@@ -108,19 +108,20 @@ const router = express.Router({ mergeParams: true });
 
 // Import the reservation controller
 const reservationController = require('../controllers/reservationController');
+const authMiddleware = require('../middleware/authMiddleware');
 
 
 // Afficher toutes les réservations (vue EJS)
-router.get('/', reservationController.afficherReservations);
+router.get('/', authMiddleware, reservationController.afficherReservations);
 
 
 // Détail d'une réservation
-router.get('/:id', reservationController.getReservationById);
+router.get('/:id', authMiddleware, reservationController.getReservationById);
 
 // Créer une réservation
-router.post('/:id/reservations/', reservationController.createReservation);
+router.post('/:id/reservations/', authMiddleware, reservationController.createReservation);
 
 // Supprimer une réservation
-router.post('/delete', reservationController.deleteReservation);
+router.post('/delete', authMiddleware, reservationController.deleteReservation);
 
 module.exports = router;

@@ -4,6 +4,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./docs/swagger');
+const helmet = require('helmet');
 
 const connectDB = require('./services/mongoService');
 connectDB();
@@ -12,6 +13,7 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(helmet());
 app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(cookieParser());
@@ -22,6 +24,7 @@ const reservationRoutes = require('./routes/reservationRoutes');
 const authRoutes = require('./routes/authRoutes');
 const ejsRoutes = require('./routes/ejsRoutes');
 const reservationController = require('./controllers/reservationController');
+
 
 // Utilisation des routes
 app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

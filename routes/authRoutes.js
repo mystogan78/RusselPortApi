@@ -159,12 +159,13 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/authController');
+const authMiddleware = require('../middleware/authMiddleware');
 
-router.post('/register', authController.register);
+router.post('/register',  authController.register);
 router.post('/login', authController.login);
 
-router.post('/delete', authController.deleteUser);
-router.post('/update', authController.updateUser);
+router.post('/delete', authMiddleware, authController.deleteUser);
+router.post('/update', authMiddleware, authController.updateUser);
 
 // Pour afficher les pages d'inscription et de connexion
 router.get('/register', (req, res) => {
