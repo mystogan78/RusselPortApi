@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: #34495e;
+      margin-top: 2rem;
+    }
+
+    form {
+      background-color: white;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+    }
+
+    input, select, button {
+      display: block;
+      width: 80%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #3498db;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <center>
+  <h1>Tableau de bord utilisateur</h1>
+
+  <div class="section">
+    <h2>Gestion des utilisateurs</h2>
+    <form method="post" action="/auth/register">
+      <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+      <input type="password" name="password" placeholder="Mot de passe" required>
+      <button type="submit">Créer un utilisateur</button>
+    </form>
+
+    <form method="post" action="/auth/update">
+      <input type="text" name="id" placeholder="Nom d'utilisateur à modifier" required>
+      <input type="text" name="newUsername" placeholder="Nouveau nom d'utilisateur" required>
+      <button type="submit">Modifier</button>
+    </form>
+
+    <form method="post" action="/auth/delete">
+      <input type="text" name="id" placeholder="Nom d'utilisateur à supprimer" required>
+      <button type="submit">Supprimer</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Gestion des catways</h2>
+    <form method="post" action="/catways">
+      <input type="text" name="catwayNumber" placeholder="Numéro du catway" required>
+      <input type="text" name="type" placeholder="long ou short" required>
+      <input type="text" name="state" placeholder="État" required>
+      <button type="submit">Créer un catway</button>
+    </form>
+
+    <form method="post" action="/catways/update">
+      <input type="text" name="id" placeholder="ID du catway à modifier" required>
+      <input type="text" name="state" placeholder="Nouvel état" required>
+      <button type="submit">Modifier</button>
+    </form>
+
+    <form method="post" action="/catways/delete">
+      <input type="text" name="id" placeholder="ID du catway à supprimer" required>
+      <button type="submit">Supprimer</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Créer une réservation</h2>
+    <form method="POST" onsubmit="return setAction(this)">
+      <label for="catwayId">Catway :</label>
+      <select name="Catway" id="catwayId" required>
+        <option value="">-- Choisissez un catway --</option>
+        <% catways.forEach(catway => { %>
+          <option value="<%= catway._id %>">
+            <%= catway.catwayNumber %> - <%= catway.type %> - <%= catway.state %>
+          </option>
+        <% }) %>
+      </select>
+
+      <input type="text" name="clientName" placeholder="Nom du client" required>
+      <input type="text" name="boatName" placeholder="Nom du bateau" required>
+      <input type="date" name="checkIn" required>
+      <input type="date" name="checkOut" required>
+      <button type="submit">Créer une réservation</button>
+    </form>
+
+    <h2>Supprimer une réservation</h2>
+    <form method="post" action="/reservations/delete">
+      <input type="text" name="id" placeholder="ID de la réservation à supprimer" required>
+      <button type="submit">Supprimer</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <a href="/catways">📋 Liste des catways</a>
+    <a href="/reservations">📅 Liste des réservations</a>
+    <a href="/docs/">📖 Documentation de l'API</a>
+  </div>
+</center>
+  <script>
+    function setAction(form) {
+      const select = form.catwayId;
+      const catwayId = select.value;
+      if (!catwayId) {
+        alert("Veuillez sélectionner un catway.");
+        return false;
+      }
+      form.action = `/reservations/${catwayId}/reservations`;
+      return true;
+    }
+  </script>
+</body>
+</html>

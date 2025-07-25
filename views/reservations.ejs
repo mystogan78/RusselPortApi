@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des réservations</title>
+
+  <style>
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #003366;
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  max-width: 700px;
+  margin: auto;
+}
+
+li {
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 15px 20px;
+  border-left: 5px solid #003366;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+a {
+  text-decoration: none;
+  color: #003366;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+a:hover {
+  color: #0055aa;
+}
+
+
+
+  </style>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Liste des réservations</h1>
+  <ul>
+    <% reservations.forEach(reservation => { %>
+      <li> 
+        <a href="/reservations/<%= reservation._id %>">
+          Réservation <%= reservation._id %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

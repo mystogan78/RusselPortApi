@@ -1,0 +1,44 @@
+[
+  {
+    "catwayNumber": 1,
+    "clientName": "Jean Dupont",
+    "boatName": "Le Grand Bleu",
+    "checkIn": "2024-07-01T10:00:00Z",
+    "checkOut": "2024-07-03T18:00:00Z"
+  },
+  {
+    "catwayNumber": 2,
+    "clientName": "Sophie Martin",
+    "boatName": "Océania",
+    "checkIn": "2024-07-05T09:00:00Z",
+    "checkOut": "2024-07-07T14:00:00Z"
+  },
+  {
+    "catwayNumber": 3,
+    "clientName": "Marc Lefèvre",
+    "boatName": "L'Étoile du Nord",
+    "checkIn": "2024-07-10T12:00:00Z",
+    "checkOut": "2024-07-12T16:00:00Z"
+  },
+  {
+    "catwayNumber": 4,
+    "clientName": "Claire Dubois",
+    "boatName": "Le Vent d'Argent",
+    "checkIn": "2024-07-15T11:00:00Z",
+    "checkOut": "2024-07-17T15:00:00Z"
+  },
+  {
+    "catwayNumber": 5,
+    "clientName": "Paul Bernard",
+    "boatName": "Le Phare",
+    "checkIn": "2024-07-20T08:00:00Z",
+    "checkOut": "2024-07-22T20:00:00Z"
+  },
+  {
+    "catwayNumber": 6,
+    "clientName": "Lucie Moreau",
+    "boatName": "La Belle Étoile",
+    "checkIn": "2024-07-25T10:00:00Z",
+    "checkOut": "2024-07-27T19:00:00Z"
+  }
+]

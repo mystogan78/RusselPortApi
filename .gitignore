@@ -1,0 +1,36 @@
+# Node modules (jamais à versionner)
+node_modules/
+
+# Variables d'environnement (très sensibles)
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Rapports de test
+coverage/
+
+# Dossiers temporaires
+tmp/
+temp/
+
+# Système (Mac/Windows/Linux)
+.DS_Store
+Thumbs.db
+
+# Fichiers de build
+dist/
+
+# Résultats Jest
+jest-cache/
+jest-config.json
+
+# VS Code
+.vscode/
+
+# Express cache
+*.pid
+
+# Swagger temp
+swagger.json

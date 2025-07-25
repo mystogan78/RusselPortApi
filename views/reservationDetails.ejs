@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détails de la réservation</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fbfd;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #003366;
+  margin-bottom: 25px;
+}
+
+p {
+  font-size: 1.1em;
+  margin: 12px 0;
+}
+
+strong {
+  color: #222;
+}
+
+a {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background-color: #003366;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: #0055aa;
+}
+
+
+
+  </style>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Détails de la réservation</h1>
+    <p><strong>ID :</strong> <%= reservation._id %></p>
+    <p><strong>Client :</strong> <%= reservation.clientName %></p>
+    <p><strong>Bateau :</strong> <%= reservation.boatName %></p>
+    <p><strong>Check-in :</strong> <%= new Date(reservation.checkIn).toLocaleDateString() %></p>
+    <p><strong>Check-out :</strong> <%= new Date(reservation.checkOut).toLocaleDateString() %></p>
+    <a href="/reservations">Retour à la liste des réservations</a>
+  </div>
+</body>
+</html>
